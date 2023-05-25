@@ -1,11 +1,11 @@
 # Welcome to Remix!
 
 - [Remix Docs](https://remix.run/docs)
-- [Netlify Functions](https://www.netlify.com/products/functions/)
+- [Netlify Edge Functions Overview](https://docs.netlify.com/edge-functions/overview/)
 
 ## Netlify Setup
 
-1. Install the [Netlify CLI](https://www.netlify.com/products/dev/):
+1. Install the [Netlify CLI](https://docs.netlify.com/cli/get-started/):
 
 ```sh
 npm i -g netlify-cli
@@ -31,23 +31,45 @@ netlify init
 
 ## Development
 
-The Remix dev server starts your app in development mode, rebuilding assets on file changes. To start the Remix dev server:
+Ensure all packages are installed by running:
 
 ```sh
-npm run dev
+npm install
 ```
 
-Open up [http://localhost:3000](http://localhost:3000), and you should be ready to go!
-
-The Netlify CLI builds a production version of your Remix App Server and splits it into Netlify Functions that run locally. This includes any custom Netlify functions you've developed. The Netlify CLI runs all of this in its development mode.
+Run
 
 ```sh
 netlify dev
 ```
 
-Open up [http://localhost:3000](http://localhost:3000), and you should be ready to go!
+Open up [http://localhost:8888](http://localhost:8888), and you're ready to go!
 
-Note: When running the Netlify CLI, file changes will rebuild assets, but you will not see the changes to the page you are on unless you do a browser refresh of the page. Due to how the Netlify CLI builds the Remix App Server, it does not support hot module reloading.
+### Serve your site locally
+
+Run
+
+```sh
+npm netlify serve
+```
+
+to serve your site locally at [http://localhost:8888](http://localhost:8888).
+
+## Excluding routes
+
+You can exclude routes for non-Remix code such as custom Netlify Functions or Edge Functions. To do this, add an additional entry in the array like in the example below:
+
+````diff
+export const config = {
+  cache: "manual",
+  path: "/*",
+  // Let the CDN handle requests for static assets, i.e. /_assets/*
+  //
+  // Add other exclusions here, e.g. "/api/*" for custom Netlify functions or
+  // custom Netlify Edge Functions
+-  excluded_patterns: ["/_assets/*"],
++  excluded_patterns: ["/_assets/*", "/api/*"],
+};
 
 ## Deployment
 
@@ -59,4 +81,4 @@ netlify deploy --build
 
 # production deployment
 netlify deploy --build --prod
-```
+````
