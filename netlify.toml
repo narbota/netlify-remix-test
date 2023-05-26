@@ -5,3 +5,8 @@ publish = "public"
 [dev]
 command = "npm run dev"
 targetPort = 3000
+
+
+[[edge_functions]]
+function = "hello-world"
+path = "/test"

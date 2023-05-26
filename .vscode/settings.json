@@ -1,6 +1,12 @@
 {
-  "deno.enablePaths": ["netlify/edge-functions/", ".netlify/edge-functions/"],
+  "deno.enablePaths": [
+    "netlify/edge-functions/",
+    ".netlify/edge-functions/",
+    "netlify/edge-functions"
+  ],
   "deno.unstable": true,
   "deno.importMap": ".netlify/edge-functions-import-map.json",
-  "deno.internalDebug": false
+  "deno.internalDebug": false,
+  "deno.enable": true,
+  "deno.path": "/Users/andreanarbot/Library/Preferences/netlify/deno-cli/deno"
 }
